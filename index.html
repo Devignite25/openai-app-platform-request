@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free the Devs - Break Free from App Store Monopolies</title>
+    <meta name="description" content="Join the movement to create a fair, developer-first OpenAI-powered app platform. Rally independent developers against app store monopolies.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔓%3C/text%3E%3C/svg%3E">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free the Devs - Break Free from App Store Monopolies">
+    <meta property="og:description" content="Join the movement for a fair, developer-first OpenAI-powered app platform">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devignite25.github.io/openai-app-platform-request/">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="chains" patternUnits="userSpaceOnUse" width="100" height="100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></pattern></defs><rect width="100%" height="100%" fill="url(%23chains)"/></svg>') center/cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #4f46e5;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #4f46e5;
+            transform: translateY(-3px);
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Why This Matters */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #4f46e5;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* What We're Asking */
+        .goals-list {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .goals-list ul {
+            list-style: none;
+        }
+
+        .goals-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+            color: #374151;
+        }
+
+        .goals-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #10b981;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Email Form */
+        .email-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        /* Social Section */
+        .social-section {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .share-buttons {
+            margin-top: 3rem;
+        }
+
+        .share-button {
+            display: inline-block;
+            margin: 0 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .share-button:hover {
+            background: #3730a3;
+            transform: translateY(-2px);
+        }
+
+        /* Wall of Support */
+        .wall-of-support {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 5rem 0;
+        }
+
+        .supporters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+
+        .supporter-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .supporter-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .supporter-name {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+
+        .supporter-role {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .support-count {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Founder's Note */
+        .founders-note {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .founders-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        .founders-signature {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.1rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .founders-signature strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* GitHub Badges */
+        .github-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .github-badges img {
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .github-badges img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">🔓 Free the Devs</a>
+            <ul class="nav-links">
+                <li><a href="#why">Why</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#letter">Letter</a></li>
+                <li><a href="#join">Join</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-in">
+                <h1>Free the Devs</h1>
+                <p class="hero-subtitle">
+                    Break free from app store monopolies. Join the movement for a fair, developer-first OpenAI-powered platform that puts creators first.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/Devignite25/openai-app-platform-request" target="_blank" rel="noopener" class="btn btn-primary">
+                        📋 View Campaign on GitHub
+                    </a>
+                    <a href="#letter" class="btn btn-secondary">
+                        📖 Read Our Letter
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">⬇</div>
+    </section>
+
+    <main>
+        <section id="why" class="container">
+            <h2 class="section-title">Why This Matters</h2>
+            <p class="section-subtitle">
+                Independent developers and solo builders face unprecedented challenges in today's app ecosystem. It's time for change.
+            </p>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <h3>🏪 App Store Monopolies</h3>
+                    <p>Apple and Google control distribution with 30% fees, arbitrary rejections, and changing rules that crush small developers overnight.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>💸 Unfair Revenue Splits</h3>
+                    <p>Massive platform fees eat into already thin margins, making it nearly impossible for indie developers to build sustainable businesses.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🎯 Algorithmic Suppression</h3>
+                    <p>Your app's success depends on opaque algorithms that favor established players and paid promotion over quality and innovation.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🔒 Platform Lock-in</h3>
+                    <p>Developers are trapped in ecosystems where platforms hold all the power, changing terms and policies without notice or recourse.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🤖 AI Revolution Gatekeeping</h3>
+                    <p>As AI transforms app development, the same monopolies threaten to control access to the tools and platforms of the future.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🔥 Innovation Stagnation</h3>
+                    <p>When platforms extract maximum value instead of enabling creators, groundbreaking ideas never see the light of day.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="goals" class="container">
+            <h2 class="section-title">What We're Asking</h2>
+            <p class="section-subtitle">
+                Our campaign calls on OpenAI to create a developer-first platform that breaks the cycle of exploitation.
+            </p>
+            
+            <div class="goals-list">
+                <ul>
+                    <li><strong>Fair Revenue Sharing:</strong> Maximum 5-10% platform fee, not the industry standard 30%</li>
+                    <li><strong>Transparent Policies:</strong> Clear, consistent rules with developer input on changes</li>
+                    <li><strong>Open Distribution:</strong> Multiple ways to reach users, not just one gatekeeper</li>
+                    <li><strong>Developer-First Design:</strong> Tools and APIs built for creators, not advertisers</li>
+                    <li><strong>Community Governance:</strong> Developer representation in platform decisions</li>
+                    <li><strong>AI-Powered Innovation:</strong> Leverage OpenAI's technology to empower, not replace, human creativity</li>
+                    <li><strong>Global Accessibility:</strong> Equal opportunity for developers worldwide, regardless of location or background</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="letter" class="container">
+            <h2 class="section-title">Read the Letter</h2>
+            <p class="section-subtitle">
+                See our detailed proposal and the reasoning behind our campaign for a better developer ecosystem.
+            </p>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://github.com/Devignite25/openai-app-platform-request/blob/main/letter-to-openai.md" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    📜 Read Full Letter to OpenAI
+                </a>
+            </div>
+
+            <!-- GitHub Repo Metrics -->
+            <div class="github-badges">
+                <img src="https://img.shields.io/github/stars/Devignite25/openai-app-platform-request?style=for-the-badge&logo=github&color=4f46e5" alt="GitHub Stars">
+                <img src="https://img.shields.io/github/license/Devignite25/openai-app-platform-request?style=for-the-badge&color=10b981" alt="License">
+                <img src="https://img.shields.io/github/last-commit/Devignite25/openai-app-platform-request?style=for-the-badge&color=f59e0b" alt="Last Commit">
+            </div>
+        </section>
+
+        <section id="join" class="container" style="background: #f9fafb;">
+            <h2 class="section-title">Join the Movement</h2>
+            <p class="section-subtitle">
+                Add your voice to the campaign. Every developer signature strengthens our collective call for change.
+            </p>
+            
+            <div class="email-form">
+                <form action="https://formspree.io/f/mqalydwr" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <input type="text" id="role" name="role" placeholder="e.g., Independent Developer, Startup Founder">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Why does this matter to you? (Optional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Share your experience with app stores and why you support this campaign..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        ✊ Join the Campaign
+                    </button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 2rem; color: #6b7280; font-size: 0.9rem;">
+                    Your information will only be used to support this campaign and won't be shared with third parties.
+                </p>
+            </div>
+        </section>
+
+        <!-- Wall of Support Section -->
+        <section class="wall-of-support">
+            <div class="container">
+                <h2 class="section-title" style="color: #1f2937;">Wall of Support</h2>
+                <p class="section-subtitle" style="color: #6b7280;">
+                    Developers from around the world are joining the movement. Be the first to sign and your name will appear here.
+                </p>
+                
+                <div class="supporters-grid" id="supportersGrid">
+                    <div style="text-align: center; grid-column: 1 / -1; padding: 3rem; color: #6b7280; font-style: italic;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌟</div>
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Be the first developer to join the movement!</p>
+                        <p>Your name will appear here within 24 hours of signing the campaign.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founder's Note Section -->
+        <section class="founders-note">
+            <div class="container">
+                <h2 class="section-title" style="color: white; margin-bottom: 3rem;">From the Founder</h2>
+                
+                <blockquote class="founders-quote">
+                    "I created this campaign because I've lived the struggle. I'm an independent developer who believes in privacy, fairness, and giving power back to creators. Watching billion-dollar platforms gatekeep access to innovation—while solo developers like me struggle to break through—was the final straw.
+                    <br><br>
+                    I believe OpenAI has a chance to lead differently.
+                    <br><br>
+                    This isn't just a request. It's a call to action."
+                </blockquote>
+                
+                <div class="founders-signature">
+                    <strong>— Jorge Maure</strong>
+                    Founder, DevIgnite
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Spread the Word</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">
+                Follow our progress and help amplify the message across the developer community.
+            </p>
+            
+            <div class="social-links">
+                <a href="https://x.com/dev_ignite" target="_blank" rel="noopener" class="social-link">
+                    🐦 Follow @dev_ignite
+                </a>
+                <a href="https://github.com/Devignite25/openai-app-platform-request" target="_blank" rel="noopener" class="social-link">
+                    ⭐ Star on GitHub
+                </a>
+            </div>
+            
+            <div class="share-buttons">
+                <h3 style="margin-bottom: 2rem;">Share the Campaign</h3>
+                <a href="javascript:void(0)" onclick="shareTwitter()" class="share-button">Share on Twitter</a>
+                <a href="javascript:void(0)" onclick="shareEmail()" class="share-button">Share via Email</a>
+                <a href="javascript:void(0)" onclick="copyLink()" class="share-button">Copy Link</a>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 1rem;">Use the hashtag:</h3>
+                <p style="font-size: 1.5rem; font-weight: bold; color: #60a5fa;">#FreeTheDevs</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DevIgnite. This campaign is open source and powered by the developer community.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                <a href="https://github.com/Devignite25/openai-app-platform-request" target="_blank" rel="noopener" style="color: #60a5fa;">View Source on GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Share functions
+        function shareTwitter() {
+            const text = encodeURIComponent("Join the #FreeTheDevs movement! 🔓 We're calling on OpenAI to create a fair, developer-first app platform that breaks free from app store monopolies. Every indie dev deserves better! 💪");
+            const url = encodeURIComponent('https://devignite25.github.io/openai-app-platform-request/');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
+        function shareEmail() {
+            const subject = encodeURIComponent("Free the Devs - Join the Movement for Fair App Platforms");
+            const campaignUrl = 'https://devignite25.github.io/openai-app-platform-request/';
+            const body = encodeURIComponent(`Hi,
+
+I wanted to share this important campaign with you: Free the Devs.
+
+Independent developers are being crushed by app store monopolies with 30% fees, arbitrary rejections, and unfair policies. This grassroots movement is calling on OpenAI to create a developer-first platform that puts creators first.
+
+Check it out: ${campaignUrl}
+
+The more developers who join, the stronger our voice becomes. Would you consider signing on?
+
+#FreeTheDevs
+
+Best regards`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        function copyLink() {
+            const campaignUrl = 'https://devignite25.github.io/openai-app-platform-request/';
+            navigator.clipboard.writeText(campaignUrl).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied! ✓';
+                button.style.background = '#10b981';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#4f46e5';
+                }, 2000);
+            }).catch(() => {
+                alert('Link copied to clipboard: ' + campaignUrl);
+            });
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Joining Campaign...';
+            submitButton.disabled = true;
+            
+            // Let the form submit naturally to Formspree
+            // The button state will reset on page reload or redirect
+        });
+    </script>
+</body>
+</html>
